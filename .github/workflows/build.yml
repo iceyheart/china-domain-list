@@ -1,0 +1,44 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "00 03 * * *"
+  push:
+    branches:
+      - main
+    paths-ignore: 
+      - "**/README.md" 
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Prepare Workstation
+        shell: bash
+        run: |
+          git config --global init.defaultBranch main
+          mkdir -p ./publish
+
+      - name: Get Upstream
+        run: |
+          git clone --depth 1 https://github.com/felixonmars/dnsmasq-china-list.git
+          cd dnsmasq-china-list
+          make raw
+          cat accelerated-domains.china.raw.txt apple.china.raw.txt google.china.raw.txt > domain.txt
+          mv domain.txt ../publish
+          cd ..
+
+      - name: Git push assets to "release" branch
+        run: |
+          cd publish || exit 1
+          git init
+          git config --local user.name "github-actions"
+          git config --local user.email "github-actions@github.com"
+          git checkout -b release
+          git add --all
+          git commit -m "sync"
+          git remote add china-domain-list "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+          git push -f china-domain-list release
