@@ -41,6 +41,7 @@ jobs:
           cd ..
           
       - name: Merge
+        run: |
           cd publish
           cat tmp_domain.txt tmp_cn.txt | sort | uniq > domain.txt
           rm tmp_domain.txt tmp_cn.txt
