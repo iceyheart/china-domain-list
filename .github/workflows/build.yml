@@ -37,7 +37,8 @@ jobs:
           curl -L https://raw.githubusercontent.com/v2fly/domain-list-community/release/cn.txt -o tmp1_cn.txt
           sed '/\@ads/d;/\@!cn/d' tmp1_cn.txt > tmp_cn.txt
           sed -i "s/\:@cn//g" tmp_cn.txt
-          mv tmp_cn.txt ../publish
+          mv tmp_cn.txt publish/
+          rm tmp1_cn.txt
           
       - name: Merge
         run: |
