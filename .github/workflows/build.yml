@@ -22,16 +22,30 @@ jobs:
           git config --global init.defaultBranch main
           mkdir -p ./publish
 
-      - name: Get Upstream
+      - name: Get dnsmasq-china-list
         run: |
           git clone --depth 1 https://github.com/felixonmars/dnsmasq-china-list.git
           cd dnsmasq-china-list
           make raw
-          cat accelerated-domains.china.raw.txt apple.china.raw.txt google.china.raw.txt > tmp_domain.txt
-          sed 's/^/domain:/' tmp_domain.txt > domain.txt
-          mv domain.txt ../publish
+          cat accelerated-domains.china.raw.txt apple.china.raw.txt google.china.raw.txt > domain.txt
+          sed 's/^/domain:/' domain.txt > tmp_domain.txt
+          mv tmp_domain.txt ../publish
           cd ..
-
+          
+      - name: Get domain-list-community@cn
+        run: |
+          curl -L https://raw.githubusercontent.com/v2fly/domain-list-community/release/cn.txt -o tmp_1cn.txt
+          sed '/\@ads/d;/\@!cn/d' tmp1_cn.txt > tmp_cn.txt
+          sed -i "s/\:@cn//g" tmp_cn.txt
+          mv tmp_cn.txt ../publish
+          cd ..
+          
+      - name: Merge
+          cd publish
+          cat tmp_domain.txt tmp_cn.txt | sort | uniq > domain.txt
+          rm tmp_domain.txt tmp_cn.txt
+          cd ..
+          
       - name: Git push assets to "release" branch
         run: |
           cd publish || exit 1
