@@ -38,7 +38,6 @@ jobs:
           sed '/\@ads/d;/\@!cn/d' tmp1_cn.txt > tmp_cn.txt
           sed -i "s/\:@cn//g" tmp_cn.txt
           mv tmp_cn.txt ../publish
-          cd ..
           
       - name: Merge
         run: |
