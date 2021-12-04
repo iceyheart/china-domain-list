@@ -26,6 +26,7 @@ jobs:
         run: |
           git clone --depth 1 https://github.com/felixonmars/dnsmasq-china-list.git
           cd dnsmasq-china-list
+          sed -i 's|server=/cn/114.114.114.114||' accelerated-domains.china.conf
           make raw
           cat accelerated-domains.china.raw.txt apple.china.raw.txt google.china.raw.txt > domain.txt
           sed 's/^/domain:/' domain.txt > tmp_domain.txt
