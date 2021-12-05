@@ -30,25 +30,9 @@ jobs:
           rm accelerated-domains.china.conf
           mv tmp_accelerated-domains.china.conf accelerated-domains.china.conf
           make raw
-          cat accelerated-domains.china.raw.txt apple.china.raw.txt google.china.raw.txt > domain.txt
-          sed 's/^/domain:/' domain.txt > tmp_domain.txt
-          mv tmp_domain.txt ../publish
-          cd ..
-          
-      - name: Get domain-list-community@cn
-        run: |
-          curl -L https://raw.githubusercontent.com/v2fly/domain-list-community/release/cn.txt -o tmp1_cn.txt
-          sed '/domain\:cn/d' tmp1_cn.txt > tmp2_cn.txt
-          sed '/\@ads/d;/\@!cn/d' tmp2_cn.txt > tmp_cn.txt
-          sed -i "s/\:@cn//g" tmp_cn.txt
-          mv tmp_cn.txt publish/
-          rm tmp*.txt
-          
-      - name: Merge
-        run: |
-          cd publish
-          cat tmp_domain.txt tmp_cn.txt | sort | uniq > domain.txt
-          rm tmp_domain.txt tmp_cn.txt
+          cat accelerated-domains.china.raw.txt apple.china.raw.txt google.china.raw.txt > tmp_domain.txt
+          sed 's/^/domain:/' tmp_domain.txt > domain.txt
+          mv domain.txt ../publish
           cd ..
           
       - name: Git push assets to "release" branch
