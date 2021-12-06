@@ -27,7 +27,7 @@ jobs:
           git clone --depth 1 https://github.com/felixonmars/dnsmasq-china-list.git
           cd dnsmasq-china-list
           make raw
-          cat accelerated-domains.china.raw.txt apple.china.raw.txt > tmp_domain.txt
+          cat accelerated-domains.china.raw.txt apple.china.raw.txt google.china.raw.txt > tmp_domain.txt
           sed 's/^/domain:/' tmp_domain.txt > domain.txt
           mv domain.txt ../publish
           cd ..
