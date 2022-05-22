@@ -27,14 +27,21 @@ jobs:
           git clone --depth 1 https://github.com/felixonmars/dnsmasq-china-list.git
           cd dnsmasq-china-list
           
+          # base file
           make raw
           cat accelerated-domains.china.raw.txt apple.china.raw.txt google.china.raw.txt > domain.txt
           mv domain.txt ../publish
           
+          # base unbound
           make SERVER=223.5.5.5 unbound
           mv accelerated-domains.china.unbound.conf ../publish/unbound.conf
           
           cd ..
+          
+          # shadowsocket
+          sed 's/^/DOMAIN\-SUFFIX\,/' publish/domain.txt > publish/rocket.txt
+          
+          
           
       - name: Git push assets to "release" branch
         run: |
