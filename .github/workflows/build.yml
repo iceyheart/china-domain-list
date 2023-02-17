@@ -29,7 +29,7 @@ jobs:
           
           # base file
           make raw
-          cat accelerated-domains.china.raw.txt apple.china.raw.txt google.china.raw.txt > all.txt
+          cat accelerated-domains.china.raw.txt apple.china.raw.txt > all.txt
           
           # raw file
           cp all.txt ../publish/domain.txt
