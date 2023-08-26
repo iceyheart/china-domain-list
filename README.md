@@ -1,11 +1,9 @@
 # China Domain List
 
-[https://raw.githubusercontent.com/carrnot/china-domain-list/release/domain.txt](https://raw.githubusercontent.com/carrnot/china-domain-list/release/domain.txt)
+* domain-list: [https://raw.githubusercontent.com/iceyheart/china-domain-list/release/domain.china.txt](https://raw.githubusercontent.com/iceyheart/china-domain-list/release/domain.china.txt)
 
-* dnscrypt-proxy: [https://raw.githubusercontent.com/carrnot/china-domain-list/release/forwarding-rules.txt](https://raw.githubusercontent.com/carrnot/china-domain-list/release/forwarding-rules.txt)
-* shadowrocket: [https://raw.githubusercontent.com/carrnot/china-domain-list/release/rocket.txt](https://raw.githubusercontent.com/carrnot/china-domain-list/release/rocket.txt)
-* unbound: [https://raw.githubusercontent.com/carrnot/china-domain-list/release/unbound.conf](https://raw.githubusercontent.com/carrnot/china-domain-list/release/unbound.conf)
-  * with-ipv6: [https://raw.githubusercontent.com/carrnot/china-domain-list/release/unbound-ipv6.conf](https://raw.githubusercontent.com/carrnot/china-domain-list/release/unbound-ipv6.conf)
+* shadowrocket: [https://raw.githubusercontent.com/iceyheart/china-domain-list/release/shadowrocket.txt](https://raw.githubusercontent.com/iceyheart/china-domain-list/release/shadowrocket.txt)
+
 
 ## Credits
 
